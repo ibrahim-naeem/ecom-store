@@ -1,0 +1,108 @@
+import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { Menu, X, ChevronRight, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router";
+
+const SlideMenu = ({ children, isOpen, zIndex, top }) => {
+  return (
+    <AnimatePresence initial={false}>
+      {isOpen && (
+        <motion.div
+          initial={{ x: 200, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: 200, opacity: 0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+          className={`bg-white w-[80vw] h-[100vh] fixed flex flex-col right-0 ${top} ${zIndex} shadow-2xl text-gray-500`}
+        >
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
+function Navbar() {
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [subNav, setSubNav] = useState(false);
+  const [subNavOne, setSubNavOne] = useState(false);
+  return (
+    <div className=" w-full z-50">
+      <div className="flex justify-between items-center  px-20 py-5 bg-gray-600 text-white font-bold">
+        <button onClick={() => navigate("dashboard")}>ECOM STORE</button>
+        <button
+          className="right-0 md:hidden"
+          onClick={() => {
+            setOpen(!open);
+          }}
+        >
+          <Menu />
+        </button>
+      </div>
+
+      {/* Mobile Navigation */}
+      <SlideMenu isOpen={open} setIsOpen={setOpen} top={"top-0"}>
+        <div className="flex justify-between items-center p-5 bg-gray-600 text-white">
+          <span>LOGO</span>
+          <X
+            onClick={() => {
+              setOpen(false);
+              setSubNav(false);
+              setSubNavOne(false);
+            }}
+          />
+        </div>
+        <ul className=" p-5 z-20">
+          <li className="p-4 shadow-lg rounded-full flex items-center justify-between">
+            <span>Main Shoes</span>
+            <ChevronRight onClick={() => setSubNav(!subNav)} />
+
+            {/* sub nav */}
+            <SlideMenu
+              isOpen={subNav}
+              setIsOpen={setSubNav}
+              zIndex={"z-30"}
+              top={"top-16"}
+            >
+              <ul className="p-5 ">
+                <ArrowLeft
+                  onClick={() => setSubNav(!subNav)}
+                  className="ml-auto mr-6 mb-4"
+                />
+                <li className="p-4 shadow-lg rounded-full flex items-center justify-between">
+                  <span>Shoes</span>
+                  <ChevronRight onClick={() => setSubNavOne(!subNavOne)} />
+
+                  {/* sub nav one */}
+                  <SlideMenu isOpen={subNavOne} zIndex={"z-40"} top={"top-16"}>
+                    <ul className="p-5 ">
+                      <ArrowLeft
+                        onClick={() => setSubNavOne(!subNavOne)}
+                        className="ml-auto mr-6 mb-4"
+                      />
+                      <li className="p-4 shadow-lg rounded-full flex items-center justify-between">
+                        <span>Oxford</span>
+                        {/* <ChevronRight /> */}
+                      </li>
+                      <li className="p-4 shadow-lg rounded-full">One </li>
+                      <li className="p-4 shadow-lg rounded-full">Two</li>
+                      <li className="p-4 shadow-lg rounded-full">Three</li>
+                    </ul>
+                  </SlideMenu>
+                </li>
+                <li className="p-4 shadow-lg rounded-full">One </li>
+                <li className="p-4 shadow-lg rounded-full">Two</li>
+                <li className="p-4 shadow-lg rounded-full">Three</li>
+              </ul>
+            </SlideMenu>
+          </li>
+          <li className="p-4 shadow-lg rounded-full">All Products</li>
+          <li className="p-4 shadow-lg rounded-full">About Us</li>
+          <li className="p-4 shadow-lg rounded-full">Contact Us</li>
+        </ul>
+      </SlideMenu>
+    </div>
+  );
+}
+
+export default Navbar;
