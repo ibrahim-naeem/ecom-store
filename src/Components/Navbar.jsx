@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X, ChevronRight, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router";
+import { supabase } from "../database/supabase";
+import { UserContext } from "../context/userContext";
 
 const SlideMenu = ({ children, isOpen, zIndex, top }) => {
   return (
@@ -21,15 +23,31 @@ const SlideMenu = ({ children, isOpen, zIndex, top }) => {
   );
 };
 
+const categoriesName = ["Oxford", "Derby", "Monk Strap", "Loafers"];
+
 function Navbar() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [subNav, setSubNav] = useState(false);
   const [subNavOne, setSubNavOne] = useState(false);
+  const { admin } = useContext(UserContext);
+
+  const logout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+
+      if (error) {
+        console.error("Error signing out:", error.message);
+      }
+      navigate("/login");
+    } catch (err) {
+      console.error("Unexpected signOut error:", err);
+    }
+  };
   return (
     <div className=" w-full z-50">
       <div className="flex justify-between items-center  px-20 py-5 bg-gray-600 text-white font-bold">
-        <button onClick={() => navigate("dashboard")}>ECOM STORE</button>
+        <button onClick={() => navigate("/")}>ECOM STORE</button>
         <button
           className="right-0 md:hidden"
           onClick={() => {
@@ -53,8 +71,19 @@ function Navbar() {
           />
         </div>
         <ul className=" p-5 z-20">
+          {admin && (
+            <li
+              className="p-4 shadow-lg rounded-full"
+              onClick={() => {
+                navigate("/dashboard");
+                setOpen(false);
+              }}
+            >
+              Go to Dashboard
+            </li>
+          )}
           <li className="p-4 shadow-lg rounded-full flex items-center justify-between">
-            <span>Main Shoes</span>
+            <span>Categories</span>
             <ChevronRight onClick={() => setSubNav(!subNav)} />
 
             {/* sub nav */}
@@ -70,7 +99,7 @@ function Navbar() {
                   className="ml-auto mr-6 mb-4"
                 />
                 <li className="p-4 shadow-lg rounded-full flex items-center justify-between">
-                  <span>Shoes</span>
+                  <span>{categoriesName[0]}</span>
                   <ChevronRight onClick={() => setSubNavOne(!subNavOne)} />
 
                   {/* sub nav one */}
@@ -81,7 +110,7 @@ function Navbar() {
                         className="ml-auto mr-6 mb-4"
                       />
                       <li className="p-4 shadow-lg rounded-full flex items-center justify-between">
-                        <span>Oxford</span>
+                        <span>Alpha</span>
                         {/* <ChevronRight /> */}
                       </li>
                       <li className="p-4 shadow-lg rounded-full">One </li>
@@ -90,15 +119,32 @@ function Navbar() {
                     </ul>
                   </SlideMenu>
                 </li>
-                <li className="p-4 shadow-lg rounded-full">One </li>
-                <li className="p-4 shadow-lg rounded-full">Two</li>
-                <li className="p-4 shadow-lg rounded-full">Three</li>
+                <li className="p-4 shadow-lg rounded-full">
+                  {categoriesName[1]}
+                </li>
+                <li className="p-4 shadow-lg rounded-full">
+                  {categoriesName[2]}
+                </li>
+                <li className="p-4 shadow-lg rounded-full">
+                  {categoriesName[3]}
+                </li>
               </ul>
             </SlideMenu>
           </li>
           <li className="p-4 shadow-lg rounded-full">All Products</li>
           <li className="p-4 shadow-lg rounded-full">About Us</li>
           <li className="p-4 shadow-lg rounded-full">Contact Us</li>
+          <li
+            className="p-4 shadow-lg rounded-full"
+            onClick={() => {
+              logout();
+              setOpen(false);
+              setSubNav(false);
+              setSubNavOne(false);
+            }}
+          >
+            Logout
+          </li>
         </ul>
       </SlideMenu>
     </div>

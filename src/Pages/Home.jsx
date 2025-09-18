@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Lottie from "lottie-react";
 
 import Slider from "../Components/Slider";
@@ -11,8 +11,10 @@ import Footer from "../Components/Footer";
 import ProductDetail from "../Components/ProductDetail";
 
 function Home() {
+  useEffect(() => {});
+
   return (
-    <div>
+    <div className="overflow-hidden">
       <Slider />
       <Lottie animationData={divider} loop={true} style={{ height: 100 }} />
       <FeaturedSection />

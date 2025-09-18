@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/auth-ui-react": "^0.4.7",
+    "@supabase/auth-ui-shared": "^0.1.8",
+    "@supabase/supabase-js": "^2.57.4",
     "@tailwindcss/vite": "^4.1.12",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.541.0",
@@ -17,6 +20,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router": "^7.8.1",
+    "react-toastify": "^11.0.5",
     "swiper": "^11.2.10",
     "tailwindcss": "^4.1.12"
   },

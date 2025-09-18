@@ -87,7 +87,7 @@ export default function Slider() {
       </Swiper>
 
       {/* Custom styles */}
-      <style jsx global>{`
+      <style>{`
         /* White arrows (hidden on small devices) */
         .swiper-button-next,
         .swiper-button-prev {
