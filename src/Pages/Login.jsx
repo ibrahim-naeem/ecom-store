@@ -15,7 +15,7 @@ export default function Login() {
       email,
       options: {
         shouldCreateUser: true,
-        redirectTo: "http://localhost:5173",
+        redirectTo: "https://ecom-store-ashy.vercel.app", // "http://localhost:5173",
       },
     });
 
