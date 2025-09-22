@@ -82,7 +82,7 @@ function Navbar() {
   const [categories, setCategories] = useState([]);
 
   const tree = buildTree(categories);
-  console.log(tree);
+
   const handleCategory = (name) => {
     navigate(`products?category=${name}`);
     setOpen(false);
@@ -104,7 +104,7 @@ function Navbar() {
       .from("categories")
       .select("id, name, parent_id")
       .order("name", { ascending: true });
-    console.log("->", data);
+
     if (error) {
       console.error("Fetch error:", error);
     } else {
