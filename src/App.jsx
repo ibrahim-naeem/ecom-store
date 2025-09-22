@@ -18,6 +18,8 @@ import ProtectedRoute from "./Routes/ProtectedRoutes";
 import PublicRoute from "./Routes/PublicRoutes";
 import AdminRoute from "./Routes/AdminRoutes";
 import { UserContext } from "./context/userContext";
+import ProductCategory from "./Pages/ProductCategory";
+import ManageProducts from "./Components/Dashboard/ManageProducts";
 const router = createBrowserRouter([
   {
     element: <ProtectedRoute />,
@@ -30,6 +32,7 @@ const router = createBrowserRouter([
           { path: "about", Component: About },
           { path: "productDetail/:id", Component: ProductDetail },
           { path: "cart", Component: CartPage },
+          { path: "products", Component: ProductCategory },
         ],
       },
     ],
@@ -44,6 +47,7 @@ const router = createBrowserRouter([
           { path: "add-product", Component: AddProduct },
           { path: "add-category", Component: AddCategory },
           { path: "manage-order", Component: ManageOrders },
+          { path: "manage-products", Component: ManageProducts },
         ],
       },
     ],

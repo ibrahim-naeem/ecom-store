@@ -33,6 +33,12 @@ function Dashboard() {
             Manage Orders
           </button>
           <button
+            onClick={() => navigate("/dashboard/manage-products")}
+            className="bg-gray-600 text-white rounded-full p-4"
+          >
+            Manage Products
+          </button>
+          <button
             onClick={() => navigate("/")}
             className=" text-gray-500 border-2 rounded-full hover:bg-gray-600 hover:text-white  p-4"
           >
