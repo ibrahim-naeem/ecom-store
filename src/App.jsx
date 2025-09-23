@@ -1,4 +1,4 @@
-import { createBrowserRouter, useNavigate } from "react-router";
+import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import MainLayout from "./Layouts/MainLayout";
 import Login from "./Pages/Login";
@@ -10,16 +10,15 @@ import AddProduct from "./Components/Dashboard/AddProduct";
 import AddCategory from "./Components/Dashboard/AddCategory";
 import ManageOrders from "./Components/Dashboard/ManageOrders";
 import CartPage from "./Pages/CartPage";
-import { useContext, useEffect, useState } from "react";
-import { supabase } from "./database/supabase";
 import { ToastContainer } from "react-toastify";
 import { UserContextProvider } from "./context/userContextProvider";
 import ProtectedRoute from "./Routes/ProtectedRoutes";
 import PublicRoute from "./Routes/PublicRoutes";
 import AdminRoute from "./Routes/AdminRoutes";
-import { UserContext } from "./context/userContext";
 import ProductCategory from "./Pages/ProductCategory";
 import ManageProducts from "./Components/Dashboard/ManageProducts";
+import EditProduct from "./Components/Dashboard/EditProduct";
+
 const router = createBrowserRouter([
   {
     element: <ProtectedRoute />,
@@ -48,6 +47,7 @@ const router = createBrowserRouter([
           { path: "add-category", Component: AddCategory },
           { path: "manage-order", Component: ManageOrders },
           { path: "manage-products", Component: ManageProducts },
+          { path: "edit-product/:id", Component: EditProduct },
         ],
       },
     ],

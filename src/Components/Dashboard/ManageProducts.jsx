@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "../../database/supabase.js";
+import { useNavigate } from "react-router";
 
 export default function ManageProducts() {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState();
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [loading, setLoading] = useState(false);
 
-  const handleAction = (id, action) => {
-    alert(`Order ${id} → ${action}`);
+  const handleEdit = (id) => {
+    navigate(`/dashboard/edit-product/${id}`);
   };
 
   const handleDelete = async (id) => {
@@ -80,7 +82,7 @@ export default function ManageProducts() {
       <div className="">
         <div>
           <h1 className="text-3xl font-bold mb-8 text-gray-800">
-            Manage Products
+            Manage Products - {selectedCategory}
           </h1>
           <select
             onClick={(e) => setSelectedCategory(e.target.value)}
@@ -161,7 +163,7 @@ export default function ManageProducts() {
                         </td>
                         <td className="p-4 flex gap-2">
                           <button
-                            onClick={() => handleAction(product.id, "View")}
+                            onClick={() => handleEdit(product.id)}
                             className="px-3 py-1 rounded-lg bg-gray-500 text-white text-sm hover:bg-gray-600 transition"
                           >
                             Edit
@@ -212,7 +214,7 @@ export default function ManageProducts() {
                 </p>
                 <div className="flex gap-2">
                   <button
-                    onClick={() => handleAction(product.id, "View")}
+                    onClick={() => handleEdit(product.id)}
                     className="flex-1 px-3 py-2 rounded-lg bg-gray-600 text-white text-sm hover:bg-gray-700 transition"
                   >
                     Edit
