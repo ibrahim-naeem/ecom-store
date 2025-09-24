@@ -6,7 +6,7 @@ import Navbar from "../Components/Navbar";
 function Dashboard() {
   const navigate = useNavigate();
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden text-textColor">
       <Navbar />
       <section className="">
         <h1 className="text-3xl font-bold pt-10 px-20">

@@ -38,7 +38,7 @@ function CategoryMenu({ items, onBack, onSelectCategory }) {
   const [active, setActive] = useState(null);
 
   return (
-    <ul className="p-5">
+    <ul className="p-5 text-textColor">
       {onBack && (
         <ArrowLeft
           onClick={onBack}
@@ -117,7 +117,7 @@ function Navbar() {
   }, []);
   return (
     <div className="w-full z-50">
-      <div className="flex justify-between items-center px-20 py-5 bg-gray-600 text-white font-bold">
+      <div className="flex justify-between items-center px-20 py-5 bg-mainTheme text-textColor   font-bold">
         <button onClick={() => navigate("/")}>ECOM STORE</button>
         <button className="right-0 md:hidden" onClick={() => setOpen(!open)}>
           <Menu />
@@ -126,11 +126,11 @@ function Navbar() {
 
       {/* Mobile Navigation */}
       <SlideMenu isOpen={open} setIsOpen={setOpen} top="top-0">
-        <div className="flex justify-between items-center p-5 bg-gray-600 text-white">
+        <div className="flex justify-between items-center p-5 bg-mainTheme text-textColor">
           <span>LOGO</span>
           <X onClick={() => setOpen(false)} className="cursor-pointer" />
         </div>
-        <ul className="p-5 z-20 flex flex-col gap-4">
+        <ul className="p-5 z-20 flex flex-col gap-4 text-textColor">
           {admin && (
             <li
               className="p-4 shadow-lg rounded-full cursor-pointer"

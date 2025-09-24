@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import LatestProducts from "./LatestProducts";
 import { useNavigate, useParams } from "react-router";
 import { supabase } from "../database/supabase";
+import ProductDescription from "./ProductDescription";
 
 export default function ProductDetail() {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ export default function ProductDetail() {
 
   return (
     <section className="py-16 px-6  relative ">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12  ">
         {/* Product Images */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -52,7 +53,7 @@ export default function ProductDetail() {
           <img
             src={mainImg}
             alt={item?.name}
-            className="w-full h-[400px] object-cover rounded-2xl shadow-md"
+            className="w-full h-[400px] object-contain rounded-2xl shadow-md"
           />
           {/* Thumbnails */}
           <div className="flex gap-4 mt-6">
@@ -75,7 +76,7 @@ export default function ProductDetail() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col justify-center"
+          className="flex flex-col  justify-center "
         >
           <h1 className="text-3xl font-bold mb-4">{item?.name}</h1>
           <p className="text-gray-600 mb-6">{item?.description}</p>
@@ -116,22 +117,23 @@ export default function ProductDetail() {
           </div>
 
           {/* Buttons */}
-          <div className="flex gap-4">
-            <button className="px-6 py-3 bg-gray-800 text-white rounded-xl hover:bg-gray-700 transition">
+          <div className="flex gap-2 text-xs md:text-xl">
+            <button className="px-4 md:px-6 py-3 bg-mainTheme text-white rounded-xl hover:bg-gray-700 transition">
               Add to Cart
             </button>
             <button
               onClick={() => navigate("/cart")}
-              className="px-6 py-3 bg-gray-500 text-white rounded-xl hover:bg-gray-600 transition"
+              className="px-4 md:px-6 py-3 bg-mainTheme text-white rounded-xl hover:bg-gray-600 transition"
             >
               Go to Cart
             </button>
-            <button className="px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-500 transition">
+            <button className="px-4 md:px-6 py-3 bg-mainTheme text-white rounded-xl hover:bg-green-500 transition">
               Buy Now
             </button>
           </div>
         </motion.div>
       </div>
+      <ProductDescription />
       <LatestProducts heading="Related Products" />
     </section>
   );

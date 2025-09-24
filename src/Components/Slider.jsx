@@ -8,25 +8,32 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import bg1 from "../Assets/image1.jpeg";
+import bg2 from "../Assets/bg-test.JPEG";
+import bg3 from "../Assets/bg-image.JPEG";
 
 export default function Slider() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const slides = [
     {
-      img: bg1,
-      heading: "Discover Nature",
-      text: "Experience the beauty of untouched landscapes.",
+      img: bg3,
+      // heading: "Discover Nature",
+      // text: "Experience the beauty of untouched landscapes.",
     },
     {
-      img: "https://picsum.photos/id/1018/1600/900",
-      heading: "Adventure Awaits",
-      text: "Step into the wild and embrace the unknown paths.",
+      img: bg1,
+      // heading: "Discover Nature",
+      // text: "Experience the beauty of untouched landscapes.",
+    },
+    {
+      img: bg2,
+      // heading: "Discover Nature",
+      // text: "Experience the beauty of untouched landscapes.",
     },
     {
       img: "https://picsum.photos/id/1020/1600/900",
-      heading: "Peaceful Escape",
-      text: "Find serenity in quiet corners of the world.",
+      // heading: "Peaceful Escape",
+      // text: "Find serenity in quiet corners of the world.",
     },
   ];
 
@@ -47,11 +54,17 @@ export default function Slider() {
         {slides.map((slide, i) => (
           <SwiperSlide key={i}>
             <div
-              className="h-full bg-no-repeat bg-center bg-cover relative"
+              className="h-full  bg-no-repeat bg-center bg-cover  relative"
               style={{ backgroundImage: `url(${slide.img})` }}
             >
+              {/* <img
+              src={slide.img}
+              alt="bg-image"
+              className="h-full  bg-no-repeat bg-center bg-contain relative"
+            /> */}
+
               {/* Dark overlay */}
-              <div className="absolute inset-0 bg-black/50"></div>
+              {/* <div className="absolute inset-0 bg-black/50"></div> */}
 
               {/* Text */}
               <div className="relative z-5 h-full flex flex-col justify-center items-start px-6 sm:px-12">

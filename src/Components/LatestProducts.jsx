@@ -7,63 +7,6 @@ export default function LatestProducts({ heading }) {
   const navigate = useNavigate();
   const [items, setitems] = useState([]);
 
-  // const products = [
-  //   {
-  //     id: 1,
-  //     img: "https://picsum.photos/500/400?random=1",
-  //     title: "Premium ",
-  //     details: "Smooth flavor with rich smoke",
-  //     price: "Rs. 4,000",
-  //     discountPrice: "Rs. 3,200",
-  //     off: "20% OFF",
-  //   },
-  //   {
-  //     id: 2,
-  //     img: "https://picsum.photos/500/400?random=2",
-  //     title: "Classic ",
-  //     details: "Durable and stylish design",
-  //     price: "Rs. 3,500",
-  //     discountPrice: "Rs. 2,800",
-  //     off: "20% OFF",
-  //   },
-  //   {
-  //     id: 3,
-  //     img: "https://picsum.photos/500/400?random=3",
-  //     title: "Pro  Kit",
-  //     details: "Includes all accessories",
-  //     price: "Rs. 6,000",
-  //     discountPrice: "Rs. 4,500",
-  //     off: "25% OFF",
-  //   },
-  //   {
-  //     id: 4,
-  //     img: "https://picsum.photos/500/400?random=4",
-  //     title: "Flavored Pod",
-  //     details: "Refreshing fruity taste",
-  //     price: "Rs. 1,500",
-  //     discountPrice: "Rs. 1,200",
-  //     off: "20% OFF",
-  //   },
-  //   {
-  //     id: 5,
-  //     img: "https://picsum.photos/500/400?random=5",
-  //     title: "Slim ",
-  //     details: "Compact and portable",
-  //     price: "Rs. 2,800",
-  //     discountPrice: "Rs. 2,200",
-  //     off: "22% OFF",
-  //   },
-  //   {
-  //     id: 6,
-  //     img: "https://picsum.photos/500/400?random=6",
-  //     title: "Luxury ",
-  //     details: "Premium build quality",
-  //     price: "Rs. 7,000",
-  //     discountPrice: "Rs. 5,250",
-  //     off: "25% OFF",
-  //   },
-  // ];
-
   useEffect(() => {
     const getAllProducts = async () => {
       try {
@@ -88,10 +31,10 @@ export default function LatestProducts({ heading }) {
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold">
+          <h2 className="text-3xl font-bold text-mainTheme">
             {heading ? heading : "Latest Products"}
           </h2>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-600 mt-2 text-textColor">
             Discover our newest arrivals with exclusive discounts.
           </p>
         </div>

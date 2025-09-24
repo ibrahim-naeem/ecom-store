@@ -9,6 +9,7 @@ import divider from "../Assets/9Vidf1zfXK.json";
 import ParallaxSection from "../Components/ParallaxSection";
 import Footer from "../Components/Footer";
 import ProductDetail from "../Components/ProductDetail";
+import OurCategories from "../Components/OurCategories";
 
 function Home() {
   useEffect(() => {});
@@ -20,7 +21,8 @@ function Home() {
       <FeaturedSection />
       <ParallaxSection />
       <Lottie animationData={divider} loop={true} style={{ height: 100 }} />
-      <LatestProducts />
+      {/* <LatestProducts /> */}
+      <OurCategories />
       <Footer />
     </div>
   );
